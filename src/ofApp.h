@@ -6,26 +6,24 @@
 
 class CustomPolygonLetter {
   std::shared_ptr<ofxBox2dPolygon> polygon;
-  ofTexture texture;
+  ofImage texture;
   ofMesh mesh;
 
 public:
 
   void setup(ofxBox2d& world, std::vector<ofPoint> pts, ofImage tex) {
-    texture = tex.getTexture();
+    texture = tex;
     //texture.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
     //texture.getTexture().setTextureWrap(GL_REPEAT, GL_REPEAT);
     polygon = std::make_shared<ofxBox2dPolygon>();
     polygon->addVertices(pts);
-    mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+    //mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
     //mesh.addVertex(ofVec2f(texture.getWidth()/2, texture.getHeight()/2));
     mesh.addVertices(pts);
     for (auto i = 0; i < pts.size() -1 ; i++) {
-      auto col = ofMap(i, 0, 75, 0, 255);
-      mesh.addColor(ofFloatColor(i, i, 0));
-      //mesh.addTexCoord(pts[i]);
+      mesh.addTexCoord(pts[i]);
       //mesh.addTexCoord(ofVec2f(texture.getWidth() / 2,texture.getHeight() / 2));
-      //mesh.addTexCoord(pts[i+1 % pts.size()]);
+      mesh.addTexCoord(pts[i+1 % pts.size()]);
     }
 
     //cout << "#v: " << mesh.getNumVertices() << " #tc: " << mesh.getNumTexCoords() << " #p: " << polygon->getPoints().size() << '\n';
@@ -36,22 +34,13 @@ public:
   }
 
   void draw() {
+    auto center = polygon->getCentroid2D();
     ofSetColor(ofColor::white);
     polygon->draw();
-    /*
-    mesh.clearVertices();
-    for (auto i = 0; i < polygon->getPoints().size(); i++) {
-      mesh.addVertex(polygon->getCentroid2D());
-      mesh.addVertex(polygon->getPoints()[i]);
-    }
-    mesh.addVertex(polygon->getCentroid2D());
-    mesh.addVertex(polygon->getPoints().front());
-    */
-    //ofSetColor(ofColor::green);
-
-    texture.bind();
-    mesh.draw();
-    texture.unbind();
+    //texture.bind();
+    texture.setAnchorPoint(texture.getWidth() / 2, texture.getHeight() / 2);
+    texture.draw(center.x, center.y);
+    //texture.unbind();
 
     /*
     ofSetColor(ofColor::red);

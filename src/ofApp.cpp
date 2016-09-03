@@ -33,7 +33,7 @@ void ofApp::setup(){
   box2d.init();
   box2d.setGravity(0, 10);
   box2d.createGround();
-  box2d.setFPS(60.0);
+  box2d.setFPS(30.0);
 
   addLetter(box2d, aa, a, 300, 100);
   addLetter(box2d, pp, p, 350, 100);
@@ -51,17 +51,12 @@ void ofApp::update() {
 
   grabber.update();
   if (grabber.isFrameNew()) {
-    /*
-    tmpCol.setFromPixels(grabber.getPixels(), 640, 480);
-    tmp = tmpCol;
-    tmp.threshold(80);
-    */
 
     absdiff(grabber, previous, diff);
     diff.update();
     diff.mirror(false, true);
     // like ofSetPixels, but more concise and cross-toolkit
-    copy(grabber, previous);
+
     finder.setThreshold(5);
     finder.setMinArea(50);
     finder.setMaxArea(500000);
@@ -96,7 +91,7 @@ void ofApp::draw() {
    edgeLine.resize(finder.getContours().size());
    for (auto j = 0; j < finder.getContours().size(); j++) {
      if (finder.getContours()[j].size() <= 3){
-       continue;
+       break;
      }
      for (unsigned int i = 0; i < finder.getContours()[j].size(); i++) {
        auto pos = finder.getContours()[j][i];
@@ -113,7 +108,7 @@ void ofApp::draw() {
    }
    ofPushMatrix();
    ofScale(1.5, 1.5);
-   for (auto& e : edgeLine){
+   for (auto& e : edgeLine) {
      e.draw();
    }
    ofPopMatrix();
@@ -130,6 +125,8 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key){
   if (key == 'l'){
     addLetter(box2d, aa, a, ofRandom(0, w), 100);
+  } else if (key == 'd'){
+    copy(grabber, previous);
   }
 }
 

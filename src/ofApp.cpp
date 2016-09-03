@@ -1,74 +1,136 @@
 #include "ofApp.h"
 
 
-
+constexpr int size{50};
+constexpr int w{640};
+constexpr int h{480};
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+  grabber.setup(w, h);
 
   a.load("a.png");
-  a.resize(75, 75);
+  aa.load("A.JPG");
+  aa.resize(size, size);
+  a.resize(size, size);
   p.load("p.png");
-  p.resize(75, 75);
+  pp.load("p.jpg");
+  p.resize(size, size);
+  pp.resize(size, size);
   o.load("o.png");
-  o.resize(75, 75);
+  oo.load("o.jpg");
+  o.resize(size, size);
+  oo.resize(size, size);
   i.load("i.png");
-  i.resize(75, 75);
+  ii.load("i.jpg");
+  i.resize(size, size);
+  ii.resize(size, size);
   l.load("l.png");
-  l.resize(75, 75);
+  ll.load("l.jpg");
+  l.resize(size, size);
+  ll.resize(size, size);
 
   box2d.init();
-  box2d.setGravity(0, 0);
+  box2d.setGravity(0, 10);
   box2d.createGround();
   box2d.setFPS(60.0);
 
-  auto addLetter = [this](ofxBox2d& box2d, ofImage img){
-      ofxCvGrayscaleImage tmp;
-      ofxCvColorImage tmpCol;
-      ofxCvContourFinder finder;
-      tmpCol.setFromPixels(img.getPixels());
-      tmp = tmpCol;
-      tmp.threshold(180);
-      finder.findContours(tmp, 5, 5000, 1, true);
-      auto c = make_shared<CustomPolygonLetter>();
-      c->setup(box2d, finder.blobs[0].pts, img);
-      letters.push_back(c);
-  };
+  addLetter(box2d, aa, a, 300, 100);
+  addLetter(box2d, pp, p, 350, 100);
+  addLetter(box2d, oo, o, 400, 100);
+  addLetter(box2d, ii, i, 450, 100);
+  addLetter(box2d, ll, l, 500, 100);
 
-  addLetter(box2d, a);
-  addLetter(box2d, p);
-  addLetter(box2d, o);
-  addLetter(box2d, i);
-  addLetter(box2d, l);
+  tmp.allocate(w, h);
+  tmpCol.allocate(w, h);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
   box2d.update();
+
+  grabber.update();
+  if (grabber.isFrameNew()) {
+    /*
+    tmpCol.setFromPixels(grabber.getPixels(), 640, 480);
+    tmp = tmpCol;
+    tmp.threshold(80);
+    */
+
+    absdiff(grabber, previous, diff);
+    diff.update();
+    diff.mirror(false, true);
+    // like ofSetPixels, but more concise and cross-toolkit
+    copy(grabber, previous);
+    finder.setThreshold(5);
+    finder.setMinArea(50);
+    finder.setMaxArea(500000);
+    finder.findContours(diff);
+  }
+
+  if ((ofGetElapsedTimeMillis() - prevTime) > 3000) {
+    addLetter(box2d, aa, a, ofRandom(0, w), 100);
+    addLetter(box2d, pp, p, ofRandom(0, w), 100);
+    addLetter(box2d, oo, o, ofRandom(0, w), 100);
+    addLetter(box2d, ii, i, ofRandom(0, w), 100);
+    addLetter(box2d, ll, l, ofRandom(0, w), 100);
+    prevTime = ofGetElapsedTimeMillis();
+  }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
   /*
   tmp.draw(0, 0);
-  if (finder.blobs.size() > 0){
+  if (finder.blobs.size() > 0) {
     ofSetColor(ofColor::blue);
     finder.blobs[0].draw();
   }
   */
-  ofSetColor(ofColor::white);
+  //diff.draw(0, 0);
+  //finder.draw();
 
-  ofTranslate(0, 100);
-  ofScale(3, 3);
-  for (auto i = 0; i < letters.size(); ++i) {
-      ofTranslate(100 + 10 * i, 0);
-      letters[i]->draw();
-  }
+   ofSetColor(ofColor::red);
+   edgeLine.clear();
+   edgeLine.resize(finder.getContours().size());
+   for (auto j = 0; j < finder.getContours().size(); j++) {
+     if (finder.getContours()[j].size() <= 3){
+       continue;
+     }
+     for (unsigned int i = 0; i < finder.getContours()[j].size(); i++) {
+       auto pos = finder.getContours()[j][i];
+       drawing.addVertex(pos.x, pos.y);
+       drawing.setClosed(true);
+       drawing.simplify();
+       edgeLine[j].addVertexes(drawing);
+       drawing.clear();
+     }
+
+     edgeLine[j].setPhysics(1.0, 0.0, 1.0);
+     edgeLine[j].create(box2d.getWorld());
+     edgeLine[j].updateShape();
+   }
+   ofPushMatrix();
+   ofScale(1.5, 1.5);
+   for (auto& e : edgeLine){
+     e.draw();
+   }
+   ofPopMatrix();
+
+   ofPushMatrix();
+   ofSetColor(ofColor::blue);
+   for (auto i = 0; i < letters.size(); ++i) {
+     letters[i]->draw();
+   }
+   ofPopMatrix();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+  if (key == 'l'){
+    addLetter(box2d, aa, a, ofRandom(0, w), 100);
+  }
 }
 
 //--------------------------------------------------------------

@@ -409,7 +409,24 @@ obj/linux64/Release/src/main.o: \
  /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvFloatImage.h \
  /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvShortImage.h \
  /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvContourFinder.h \
- /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvHaarFinder.h
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvHaarFinder.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/src/ofxCv.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Wrappers.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/imatrix.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/ETF.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/imatrix.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/fdog.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/myvec.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Helpers.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Distance.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Calibration.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Tracker.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ContourFinder.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/RunningBackground.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Flow.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ObjectFinder.h \
+ /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h
 
 /home/dimitri/Documents/development/of_v0.9.3_linux64_release/libs/openFrameworks/ofMain.h:
 
@@ -1264,3 +1281,37 @@ obj/linux64/Release/src/main.o: \
 /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvContourFinder.h:
 
 /home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxOpenCv/src/ofxCvHaarFinder.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/src/ofxCv.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Wrappers.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/imatrix.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/ETF.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/imatrix.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/fdog.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/CLD/include/CLD/myvec.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Helpers.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Distance.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Calibration.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Tracker.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ContourFinder.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/RunningBackground.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Flow.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ObjectFinder.h:
+
+/home/dimitri/Documents/development/of_v0.9.3_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h:

@@ -6,15 +6,15 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-  a.load("A.JPG");
+  a.load("a.png");
   a.resize(75, 75);
-  p.load("p.jpg");
+  p.load("p.png");
   p.resize(75, 75);
-  o.load("o.jpg");
+  o.load("o.png");
   o.resize(75, 75);
-  i.load("i.jpg");
+  i.load("i.png");
   i.resize(75, 75);
-  l.load("l.jpg");
+  l.load("l.png");
   l.resize(75, 75);
 
   box2d.init();
